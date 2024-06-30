@@ -316,8 +316,25 @@
         console.log(istTime)
         let previousBusLocation = [0, 0];
         let presentBusLocation = [0, 0];
-        const studentStopLocation = [17.559267, 78.490467];
-        
+        var studentStopLocation;
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        // Retrieve stop location from cookie and assign it to the variable
+        if (istTime >= 2 && istTime <= 14) {
+            studentStopLocation = JSON.parse(getCookie("stopLocation"));
+        }
+        else {
+            studentStopLocation = JSON.parse(getCookie("eveningStopLocation"));
+        }
+        console.log(studentStopLocation);
         // Handle here , Do fetch the studentstop from DataBase and assign to "studentStopLocation" variable
 
         let toLocation = studentStopLocation;

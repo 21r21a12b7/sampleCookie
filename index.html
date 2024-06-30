@@ -32,9 +32,11 @@
         function savePreferences() {
             var busRoute = document.getElementById("busRoute").value;
             var stopLocation = document.getElementById("stopLocation").value;
+            var eveningStopLocation = document.getElementById("eveningStopLocation").value;
             
             setCookie("defaultBus", busRoute, 7); // Store for 7 days
             setCookie("stopLocation", stopLocation, 7); // Store for 7 days
+            setCookie("eveningStopLocation", eveningStopLocation, 7); // Store for 7 days
             
             // Redirect to the appropriate route page
             window.location.href = busRoute ;
@@ -66,6 +68,9 @@
         <br><br>
         <label for="stopLocation">Enter your stop location (format: [latitude, longitude]):</label>
         <input type="text" id="stopLocation" name="stopLocation" pattern="\[\d+(\.\d+)?,\s*\d+(\.\d+)?\]" required>
+        <br><br>
+        <label for="eveningStopLocation">Enter your evening stop location (format: [latitude, longitude]):</label>
+        <input type="text" id="eveningStopLocation" name="eveningStopLocation" pattern="\[\d+(\.\d+)?,\s*\d+(\.\d+)?\]" required>
         <br><br>
         <button type="submit">Save</button>
     </form>
