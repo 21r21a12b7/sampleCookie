@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Route Settings</title>
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Function to get a cookie by name
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Function to load preferences from cookies and set form fields
+        function loadPreferences() {
+            var defaultBus = getCookie("defaultBus");
+            var stopLocation = getCookie("stopLocation");
+            var eveningStopLocation = getCookie("eveningStopLocation");
+
+            if (defaultBus) document.getElementById("busRoute").value = defaultBus;
+            if (stopLocation) document.getElementById("stopLocation").value = stopLocation;
+            if (eveningStopLocation) document.getElementById("eveningStopLocation").value = eveningStopLocation;
+        }
+
+        // Function to save the updated preferences
+        function savePreferences() {
+            var busRoute = document.getElementById("busRoute").value;
+            var stopLocation = document.getElementById("stopLocation").value;
+            var eveningStopLocation = document.getElementById("eveningStopLocation").value;
+
+            setCookie("defaultBus", busRoute, 7); // Store for 7 days
+            setCookie("stopLocation", stopLocation, 7); // Store for 7 days
+            setCookie("eveningStopLocation", eveningStopLocation, 7); // Store for 7 days
+
+            alert("Preferences saved successfully!");
+        }
+
+        // Function to close the settings and redirect to index.html
+        function closeSettings() {
+            window.location.href = "index.html";
+        }
+
+        // Run loadPreferences on page load
+        window.onload = loadPreferences;
+    </script>
+</head>
+<body>
+    <h1>Bus Route Settings</h1>
+    <form onsubmit="savePreferences(); return false;">
+        <label for="busRoute">Select your default bus:</label>
+        <select id="busRoute" name="busRoute" required>
+            <option value="route_1">Route 1</option>
+            <option value="route_2">Route 2</option>
+            <option value="route_11">Route 11</option>
+            <option value="route_21">Route 21</option>
+        </select>
+        <br><br>
+        <label for="stopLocation">Enter your stop location (format: [latitude, longitude]):</label>
+        <input type="text" id="stopLocation" name="stopLocation" pattern="\[\d+(\.\d+)?,\s*\d+(\.\d+)?\]" required>
+        <br><br>
+        <label for="eveningStopLocation">Enter your evening stop location (format: [latitude, longitude]):</label>
+        <input type="text" id="eveningStopLocation" name="eveningStopLocation" pattern="\[\d+(\.\d+)?,\s*\d+(\.\d+)?\]" required>
+        <br><br>
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeSettings()">Close</button>
+    </form>
+</body>
+</html>

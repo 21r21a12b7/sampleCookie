@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Bus Routes</title>
+    <script>
+        // Function to redirect to the given route
+        function redirectToRoute(route) {
+            window.location.href = route;
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Bus Routes</h1>
+        <button onclick="redirectToRoute('route_1')">Bus Route 1</button>
+        <button onclick="redirectToRoute('route_2')">Bus Route 2</button>
+        <button onclick="redirectToRoute('route_11')">Bus Route 11</button>
+        <button onclick="redirectToRoute('route_21')">Bus Route 21</button>
+    </div>
+</body>
+</html>
