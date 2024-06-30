@@ -317,7 +317,6 @@
         let previousBusLocation = [0, 0];
         let presentBusLocation = [0, 0];
         // const studentStopLocation = [17.559267, 78.490467];
-        console.log([17.559267, 78.490467])
 
         function getCookie(name) {
             var nameEQ = name + "=";
@@ -329,18 +328,11 @@
             }
             return null;
         }
+        // Retrieve stop location from cookie and assign it to the variable
 
-        // Retrieve stop location from cookie
-        const stopLocation = getCookie("stopLocation");
-
-        // Convert the stopLocation string to an array of size 2
-        const studentStopLocation = stopLocation ? stopLocation.split(',').map(Number) : null;
-
+        var studentStopLocation = JSON.parse(getCookie("stopLocation"));
         console.log(studentStopLocation);
-
         // Handle here , Do fetch the studentstop from DataBase and assign to "studentStopLocation" variable
-
-        console.log(studentStopLocation);
 
         let toLocation = studentStopLocation;
         let busMarker;
